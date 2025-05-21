@@ -1,0 +1,45 @@
+<script>
+    var a = [18,45,108,81,99,36];
+    var n = a.length - 1;
+    divide(a, 0, n);
+    console.log(a);
+
+    function divide(a, low, end) {
+        if (low >= end) {
+            return [a[low]];
+        }
+        let mid = Math.floor((low + end) / 2);
+
+        divide(a, low, mid);
+        divide(a, mid + 1, end);
+
+        conquer(a, low, mid, end);
+    }
+
+    function conquer(a, low, mid, end) {
+        let merge = [];
+        let x = 0;
+        let indx1 = low;
+        let indx2 = mid + 1;
+
+        while (indx1 <= mid && indx2 <= end) {
+            if (a[indx1] < a[indx2]) {
+                merge[x++] = a[indx1++];
+            } else {
+                merge[x++] = a[indx2++];
+            }
+        }
+
+        while (indx1 <= mid) {
+            merge[x++] = a[indx1++];
+        }
+
+        while (indx2 <= end) {
+            merge[x++] = a[indx2++];
+        }
+
+        for (var i = 0, j = low; i < merge.length; i++, j++) {
+            a[j] = merge[i];
+        }
+    }
+</script>

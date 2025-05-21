@@ -1,0 +1,18 @@
+<script>
+    let a = [18,45,9];
+    let num = a.length;
+    function printLeaders(a, size) {
+        let output = '';
+        for (let i = 0; i < size; i++) {
+            let j;
+            for (j = i + 1; j < size; j++) {
+                if (a[i] <= a[j])
+                    break;
+            }
+            if (j == size)
+                output =output+ a[i]+' ';
+        }
+        console.log(output);
+    }
+    printLeaders(a, num);
+</script>
